@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David O'Brien — Product Leader · Builder · Operator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-0: #060f1e;
+      --bg-1: #0a1628;
+      --bg-2: #0d1e38;
+      --accent: #4F8EF7;
+      --accent-light: #7AAEF9;
+      --accent-dim: rgba(79, 142, 247, 0.15);
+      --accent-border: rgba(79, 142, 247, 0.25);
+      --text-primary: #F0F4FF;
+      --text-secondary: #8B9CC8;
+      --text-muted: #3D5080;
+      --card-bg: rgba(10, 22, 40, 0.85);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-0);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* ===================== NAV ===================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 6%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.35s, border-bottom 0.35s, backdrop-filter 0.35s;
+    }
+
+    nav.scrolled {
+      background: rgba(6, 15, 30, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--accent-border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text-primary); }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #fff !important;
+      padding: 0.45rem 1.25rem;
+      border-radius: 7px;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-light) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 6% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 65% 45%, rgba(79, 142, 247, 0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 15% 85%, rgba(79, 142, 247, 0.06) 0%, transparent 60%);
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(79, 142, 247, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 142, 247, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(79, 142, 247, 0.1);
+      border: 1px solid rgba(79, 142, 247, 0.3);
+      padding: 0.4rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      color: var(--accent-light);
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.6s ease 0.2s forwards;
+    }
+
+    .availability-badge .dot {
+      width: 7px; height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3); }
+      50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.08); }
+    }
+
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3.2rem, 6.5vw, 5.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 0.85rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s ease 0.4s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s ease 0.55s forwards;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2.75rem;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s ease 0.7s forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s ease 0.85s forwards;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(79, 142, 247, 0.35);
+    }
+
+    .btn-secondary {
+      color: var(--text-primary);
+      padding: 0.8rem 1.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Photo */
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 0.9s ease 1.0s forwards;
+    }
+
+    .photo-ring {
+      position: relative;
+      width: 360px;
+      height: 360px;
+    }
+
+    .photo-ring::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg 90deg, transparent 90deg 180deg, var(--accent) 180deg 210deg, transparent 210deg 360deg);
+      opacity: 0.5;
+      animation: spin-ring 12s linear infinite;
+    }
+
+    @keyframes spin-ring {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .photo-circle {
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--bg-1);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(79, 142, 247, 0.12), inset 0 0 40px rgba(79, 142, 247, 0.04);
+    }
+
+    .photo-circle img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .photo-initials {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 5.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.25;
+      line-height: 1;
+    }
+
+    .photo-hint {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* File input overlay */
+    .photo-upload-label {
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 2.5rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      background: rgba(6, 15, 30, 0.5);
+    }
+
+    .photo-ring:hover .photo-upload-label { opacity: 1; }
+
+    .photo-upload-label span {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    #photoInput { display: none; }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===================== STATS ===================== */
+    #stats {
+      background: var(--bg-1);
+      border-top: 1px solid var(--accent-border);
+      border-bottom: 1px solid var(--accent-border);
+      padding: 4.5rem 6%;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      border-radius: 14px;
+      background: rgba(79, 142, 247, 0.04);
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .stat-item:hover {
+      border-color: var(--accent-border);
+      background: rgba(79, 142, 247, 0.09);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+    }
+
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 500;
+    }
+
+    /* ===================== SHARED SECTION STYLES ===================== */
+    section { padding: 7rem 6%; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===================== ABOUT ===================== */
+    #about { background: var(--bg-0); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      line-height: 1.85;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .competencies { margin-top: 0.5rem; }
+
+    .comp-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: rgba(79, 142, 247, 0.07);
+      border: 1px solid rgba(79, 142, 247, 0.18);
+      color: var(--text-secondary);
+      padding: 0.38rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .pill:hover {
+      background: rgba(79, 142, 247, 0.2);
+      color: var(--text-primary);
+      border-color: var(--accent);
+      transform: scale(1.03);
+    }
+
+    /* ===================== EXPERIENCE ===================== */
+    #experience { background: var(--bg-1); }
+
+    .experience-list {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .exp-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(79, 142, 247, 0.1);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      cursor: default;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: transparent;
+      border-radius: 0 2px 2px 0;
+      transition: background 0.3s;
+    }
+
+    .exp-card:hover {
+      border-color: rgba(79, 142, 247, 0.38);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .exp-card:hover::before { background: var(--accent); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .exp-company {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .exp-meta { text-align: right; }
+
+    .exp-date {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .exp-location {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+
+    .exp-bullets li {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.72;
+      padding-left: 1.4rem;
+      position: relative;
+      margin-bottom: 0.45rem;
+    }
+
+    .exp-bullets li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .exp-bullets .hl {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ===================== SKILLS ===================== */
+    #skills { background: var(--bg-0); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .skill-group {
+      background: var(--card-bg);
+      border: 1px solid rgba(79, 142, 247, 0.1);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .skill-group:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+    }
+
+    .skill-group-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(79, 142, 247, 0.15);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(255,255,255,0.03);
+      color: var(--text-secondary);
+      padding: 0.32rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: rgba(79, 142, 247, 0.14);
+      color: var(--text-primary);
+      border-color: rgba(79, 142, 247, 0.4);
+      transform: scale(1.04);
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact {
+      background: var(--bg-1);
+      text-align: center;
+    }
+
+    #contact .section-title {
+      max-width: 640px;
+      margin: 0 auto 1rem;
+    }
+
+    .contact-desc {
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 2.75rem;
+      line-height: 1.75;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.9rem 2.1rem;
+      border-radius: 9px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+    }
+
+    .contact-link.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .contact-link.primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(79, 142, 247, 0.35);
+    }
+
+    .contact-link.secondary {
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--text-primary);
+    }
+
+    .contact-link.secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--bg-0);
+      border-top: 1px solid var(--accent-border);
+      padding: 1.5rem 6%;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===================== SCROLL REVEAL ===================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.72s ease, transform 0.72s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rd1 { transition-delay: 0.1s; }
+    .rd2 { transition-delay: 0.2s; }
+    .rd3 { transition-delay: 0.3s; }
+    .rd4 { transition-delay: 0.4s; }
+    .rd5 { transition-delay: 0.5s; }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 960px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-photo { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links li:nth-child(1),
+      .nav-links li:nth-child(2),
+      .nav-links li:nth-child(3) { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 5rem 5%; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .exp-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">David<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="availability-badge">
+          <span class="dot"></span>
+          Available for new opportunities
+        </div>
+        <h1 class="hero-name">David O'Brien</h1>
+        <p class="hero-title">Product Leader · Builder · Operator</p>
+        <p class="hero-desc">10+ years delivering digital, SaaS, and enterprise platforms across retail, eCommerce, mobility, and consumer experiences. I build teams that ship and products that stick.</p>
+        <div class="hero-buttons">
+          <a href="#experience" class="btn-primary">View Experience →</a>
+          <a href="#contact" class="btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <div class="photo-ring" id="photoRing">
+          <div class="photo-circle" id="photoCircle">
+            <div class="photo-initials" id="photoInitials">DO</div>
+            <div class="photo-hint" id="photoHint">Upload your photo</div>
+          </div>
+          <label class="photo-upload-label" for="photoInput">
+            <span>+ Upload Photo</span>
+          </label>
+          <input type="file" id="photoInput" accept="image/*">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="10" data-suffix="+">0</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item reveal rd1">
+        <span class="stat-number" data-target="30" data-suffix="%">0</span>
+        <span class="stat-label">Delivery Efficiency Gain</span>
+      </div>
+      <div class="stat-item reveal rd2">
+        <span class="stat-number" data-prefix="$" data-target="500" data-suffix="K+">0</span>
+        <span class="stat-label">Monthly Conversion Driven</span>
+      </div>
+      <div class="stat-item reveal rd3">
+        <span class="stat-number" data-target="400" data-suffix="K">0</span>
+        <span class="stat-label">Daily Active Users</span>
+      </div>
+      <div class="stat-item reveal rd4">
+        <span class="stat-number" data-prefix="$" data-target="1" data-suffix="M+">0</span>
+        <span class="stat-label">New Business Influenced</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="section-tag reveal">About</p>
+          <h2 class="section-title reveal">I turn complexity<br>into clarity — and<br>clarity into shipped product.</h2>
+          <div class="about-text reveal rd1">
+            <p>I'm a product leader with deep roots in building and modernizing digital products — retail, eCommerce, mobility, SaaS, and enterprise platforms. I've worked everywhere from Fortune 500s to venture-backed startups and know how to calibrate my approach to what the team and business actually need.</p>
+            <p>I'm most effective close to the problem: working alongside engineering and design, sharpening scope, and building operating systems that make delivery repeatable. I lead with outcomes, not output.</p>
+            <p>Increasingly, that means leading with AI. I've shipped AI-integrated products — from mobile demand forecasting tools to SageMaker-backed workflows — and spent dedicated time upskilling in generative AI, LLM applications, and AI-enabled product practices. I'm focused on bringing that fluency to teams building the next wave of intelligent products.</p>
+          </div>
+        </div>
+
+        <div class="reveal rd2">
+          <p class="section-tag">Core Competencies</p>
+          <div class="competencies">
+            <div class="pills" style="margin-top: 1rem;">
+              <span class="pill">Product Leadership</span>
+              <span class="pill">Digital Transformation</span>
+              <span class="pill">Agile / SAFe / Scrum</span>
+              <span class="pill">Roadmaps & MVP Delivery</span>
+              <span class="pill">Stakeholder Management</span>
+              <span class="pill">Backlog & Requirements</span>
+              <span class="pill">Vendor & RFP Management</span>
+              <span class="pill">eCommerce & POS</span>
+              <span class="pill">Payments & FinTech</span>
+              <span class="pill">AI Product Strategy</span>
+              <span class="pill">Generative AI</span>
+              <span class="pill">AI / Forecasting Integrations</span>
+              <span class="pill">LLM Applications</span>
+              <span class="pill">AI-Enabled Workflows</span>
+              <span class="pill">Mobile & Web Platforms</span>
+              <span class="pill">Data & Systems Integration</span>
+              <span class="pill">Analytics & Experimentation</span>
+              <span class="pill">Team Building</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-tag reveal">Experience</p>
+      <h2 class="section-title reveal">Where I've Shipped</h2>
+
+      <div class="experience-list">
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Career Break · Independent</p>
+              <p class="exp-role">Professional Development & AI Upskilling</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Aug 2024 – Jul 2025</p>
+              <p class="exp-location">Chicago, IL</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Dedicated planned break to family travel and targeted upskilling in <span class="hl">AI concepts and practical applications</span> for SaaS and enterprise platforms</li>
+            <li>Reinforced modern <span class="hl">discovery-to-delivery workflows</span> and outcome-based planning practices</li>
+            <li>Returned with clearer prioritization, stronger AI product fluency, and sharper leadership focus</li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">US Foods (CHEF'STORE)</p>
+              <p class="exp-role">Product Lead</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Apr 2023 – Jul 2024</p>
+              <p class="exp-location">Rosemont, IL</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Improved delivery efficiency by <span class="hl">30%</span> by establishing structured agile framework across product, development, and business partners</li>
+            <li>Increased online sales conversion to <span class="hl">$500K+/month</span> via SaaS integration of Instacart</li>
+            <li>Increased in-store productivity by <span class="hl">20%</span> via Relex Pro mobile AI integration and adoption</li>
+            <li>Scaled execution across blended team of <span class="hl">4 direct reports + 8 consultants</span></li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Bounteous</p>
+              <p class="exp-role">Product Lead (Contract)</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Oct 2022 – Apr 2023</p>
+              <p class="exp-location">Chicago, IL</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Increased online ordering ROI by <span class="hl">28%</span> via DoorDash + Olo SaaS integrations</li>
+            <li>Unlocked <span class="hl">$250K</span> in additional investment by shaping enhancement proposals and aligning stakeholders</li>
+            <li>Conducted eCommerce audit translating findings into prioritized, actionable roadmap recommendations</li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Codal</p>
+              <p class="exp-role">Senior Product Manager</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Oct 2021 – Oct 2022</p>
+              <p class="exp-location">Chicago, IL</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Delivered MVP eCommerce site, POS, and WMS in <span class="hl">10 months</span> from discovery to release</li>
+            <li>Contributed to <span class="hl">$1M+</span> in new business via pitch strategy and roadmap exercises</li>
+            <li>Managed vendor ecosystem: <span class="hl">BigCommerce, Teamwork Commerce, Adyen</span></li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Cognizant</p>
+              <p class="exp-role">Senior Product Manager</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Oct 2020 – Oct 2021</p>
+              <p class="exp-location">Chicago, IL</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Led <span class="hl">waterfall-to-agile transformation</span> for CU Direct, establishing sprint rituals and backlog standards</li>
+            <li>Guided front-end and portal design in Figma, tied to measurable user outcomes</li>
+            <li>Consulted on story requirements supporting <span class="hl">AWS CloudFront + SageMaker</span> integration work</li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Southeastern Grocers</p>
+              <p class="exp-role">Senior Product Manager</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Mar 2019 – Feb 2020</p>
+              <p class="exp-location">Jacksonville, FL</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Delivered <span class="hl">3-brand mobile app MVP</span> in 6 months; launched 3-brand loyalty program in 7 months</li>
+            <li>Improved cross-team delivery efficiency by <span class="hl">25%</span> via agile best practices</li>
+            <li>Built middleware across AWS, Sitecore, and native frameworks for <span class="hl">6 mobile apps across 3 brands</span></li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Humbolt</p>
+              <p class="exp-role">Product & Business Development</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Jan 2016 – May 2019</p>
+              <p class="exp-location">New York, NY</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Grew to <span class="hl">50,000 monthly active users</span> in 3 months by launching a B2C music streaming app</li>
+            <li>Achieved <span class="hl">venture capital acquisition</span> within 3 years through product traction and licensing</li>
+            <li>Led platform build across iOS, Android, and web; secured music licensing across multiple regions</li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">Avis Budget Group</p>
+              <p class="exp-role">Director of Product, Mobile & Global Services</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Jun 2014 – Jan 2016</p>
+              <p class="exp-location">New York, NY</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Delivered improved mobile app + connected car initiative in <span class="hl">under 12 months</span></li>
+            <li>Produced <span class="hl">1/3/5-year roadmap</span> for connected car scalability and global rollout</li>
+            <li>Managed RFP submissions, vendor procurement, and legal review for third-party partners</li>
+          </ul>
+        </div>
+
+        <div class="exp-card reveal">
+          <div class="exp-header">
+            <div>
+              <p class="exp-company">From.Digital</p>
+              <p class="exp-role">Director of Product Management</p>
+            </div>
+            <div class="exp-meta">
+              <p class="exp-date">Jan 2014 – Jun 2014</p>
+              <p class="exp-location">New York, NY</p>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Earned <span class="hl">acquisition of services within 6 months</span> via high-impact mobile assessment and roadmap for Avis/Budget</li>
+            <li>Delivered industry-first <span class="hl">voice reservation capability</span> using Google Voice APIs</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-tag reveal">Skills & Tools</p>
+      <h2 class="section-title reveal">What I Work With</h2>
+
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <p class="skill-group-title">Product / Delivery</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Roadmaps</span>
+            <span class="skill-tag">MVP Definition</span>
+            <span class="skill-tag">Agile / Scrum</span>
+            <span class="skill-tag">SAFe</span>
+            <span class="skill-tag">Epics / Features / Stories</span>
+            <span class="skill-tag">Backlog Prioritization</span>
+            <span class="skill-tag">Discovery</span>
+            <span class="skill-tag">Stakeholder Alignment</span>
+            <span class="skill-tag">Vendor Management</span>
+            <span class="skill-tag">RFPs</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal rd1">
+          <p class="skill-group-title">Domains</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Digital Transformation</span>
+            <span class="skill-tag">SaaS</span>
+            <span class="skill-tag">ERP / CRM</span>
+            <span class="skill-tag">eCommerce</span>
+            <span class="skill-tag">POS</span>
+            <span class="skill-tag">Payments</span>
+            <span class="skill-tag">Mobility / IoT</span>
+            <span class="skill-tag">Dining / Hospitality</span>
+            <span class="skill-tag">Retail</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal rd2">
+          <p class="skill-group-title">ERP / Payments / POS</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Dynamics 365</span>
+            <span class="skill-tag">SAP</span>
+            <span class="skill-tag">Adyen</span>
+            <span class="skill-tag">Stripe</span>
+            <span class="skill-tag">FreedomPay</span>
+            <span class="skill-tag">Avalara</span>
+            <span class="skill-tag">NCR</span>
+            <span class="skill-tag">Teamwork Commerce</span>
+            <span class="skill-tag">Olo</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <p class="skill-group-title">AI / Forecasting</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Relex Demand Forecasting</span>
+            <span class="skill-tag">Relex Pro</span>
+            <span class="skill-tag">AWS SageMaker</span>
+            <span class="skill-tag">AI Product Strategy</span>
+            <span class="skill-tag">Prompt Engineering</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal rd1">
+          <p class="skill-group-title">Tools</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Confluence</span>
+            <span class="skill-tag">Azure DevOps</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Mixpanel</span>
+            <span class="skill-tag">Optimizely</span>
+            <span class="skill-tag">Google Analytics</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal rd2">
+          <p class="skill-group-title">Cloud / Tech</p>
+          <div class="skill-tags">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Google Cloud</span>
+            <span class="skill-tag">Microsoft Azure</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">GraphQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">iOS</span>
+            <span class="skill-tag">Android</span>
+            <span class="skill-tag">HTML / CSS / JS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-tag reveal">Let's Connect</p>
+      <h2 class="section-title reveal">Ready to build<br>something great?</h2>
+      <p class="contact-desc reveal">Whether you're hiring a product leader or looking for a fractional PM to drive delivery — I'd love to talk.</p>
+      <div class="contact-buttons reveal">
+        <a href="mailto:davidjamesobrien@me.com" class="contact-link primary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email Me
+        </a>
+        <a href="https://linkedin.com/in/davidjamesobrien" target="_blank" class="contact-link secondary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 David O'Brien &nbsp;·&nbsp; Chicago, IL &nbsp;·&nbsp; Product Leader · Builder · Operator</p>
+  </footer>
+
+  <script>
+    // === NAV SCROLL ===
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // === SMOOTH SCROLL ===
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // === COUNTER ANIMATION ===
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1800;
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target < 5 ? (eased * target).toFixed(0) : Math.round(eased * target);
+        el.textContent = prefix + current + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(update);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsEl = document.getElementById('stats');
+    if (statsEl) statsObserver.observe(statsEl);
+
+    // === ACTIVE NAV HIGHLIGHT ===
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
+    // === PHOTO UPLOAD ===
+    const photoInput = document.getElementById('photoInput');
+    const photoCircle = document.getElementById('photoCircle');
+    const photoInitials = document.getElementById('photoInitials');
+    const photoHint = document.getElementById('photoHint');
+
+    photoInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoInitials.style.display = 'none';
+        photoHint.style.display = 'none';
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        photoCircle.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+
+</body>
+</html>
