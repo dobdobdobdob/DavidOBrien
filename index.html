@@ -483,6 +483,96 @@
       transform: scale(1.03);
     }
 
+    /* ===================== FEATURED WORK ===================== */
+    #work { background: var(--bg-1); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .work-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(79, 142, 247, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-card::after {
+      content: '→';
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: all 0.3s;
+    }
+
+    .work-card:hover {
+      border-color: rgba(79, 142, 247, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
+
+    .work-card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .work-card-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .work-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .work-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .work-card-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(79, 142, 247, 0.1);
+      border: 1px solid rgba(79, 142, 247, 0.2);
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-light);
+    }
+
+    @media (max-width: 700px) {
+      .work-grid { grid-template-columns: 1fr; }
+    }
+
     /* ===================== EXPERIENCE ===================== */
     #experience { background: var(--bg-1); }
 
@@ -766,6 +856,7 @@
     <a href="#hero" class="nav-logo">David<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact" class="nav-cta">Hire Me</a></li>
@@ -866,6 +957,46 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section id="work">
+    <div class="section-inner">
+      <p class="section-tag reveal">Featured Work</p>
+      <h2 class="section-title reveal">Case Studies</h2>
+
+      <div class="work-grid">
+
+        <a href="case-chefstore.html" class="work-card reveal">
+          <p class="work-card-tag">Retail · AI · Data</p>
+          <h3 class="work-card-title">AI-Powered Store Replenishment at CHEF'STORE</h3>
+          <p class="work-card-desc">Led Relex AI integration and consolidated fragmented databases into Snowflake to fully automate store replenishment — driving measurable gains in productivity and conversion.</p>
+          <span class="work-card-stat">↑ 20% In-Store Productivity</span>
+        </a>
+
+        <a href="case-sitkagear.html" class="work-card reveal rd1">
+          <p class="work-card-tag">eCommerce · POS · Transformation</p>
+          <h3 class="work-card-title">Full Commerce Transformation for Sitka Gear</h3>
+          <p class="work-card-desc">Lifted and shifted Sitka Gear off legacy proprietary systems onto a modern stack — BigCommerce, Teamwork Commerce POS + AI WMS — enabling growth from 1 to 17 stores.</p>
+          <span class="work-card-stat">Scaled from 1 - 17 Physical Stores</span>
+        </a>
+
+        <a href="case-humbolt.html" class="work-card reveal rd2">
+          <p class="work-card-tag">Consumer · Mobile · Growth</p>
+          <h3 class="work-card-title">0 to VC Acquisition at Humbolt</h3>
+          <p class="work-card-desc">Built a B2C music streaming platform from scratch — iOS, Android, and web — secured multi-region licensing, and scaled to 400K daily active users before a successful VC acquisition.</p>
+          <span class="work-card-stat">400K Daily Active Users</span>
+        </a>
+
+        <a href="case-avis.html" class="work-card reveal rd3">
+          <p class="work-card-tag">Mobility · IoT · Connected Car</p>
+          <h3 class="work-card-title">Connected Car Experience at Avis Budget Group</h3>
+          <p class="work-card-desc">Led a customer-driven mobile initiative using GM Cloud services to eliminate rental friction — enabling premium members to select, locate, access, and exit without ever waiting in line.</p>
+          <span class="work-card-stat">Delivered in Under 12 Months</span>
+        </a>
+
       </div>
     </div>
   </section>
