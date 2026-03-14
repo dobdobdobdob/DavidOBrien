@@ -823,9 +823,10 @@
       transform: translateY(0);
     }
 
-    .reveal-fallback .reveal {
-      opacity: 1;
-      transform: translateY(0);
+    /* Stats always visible */
+    #stats .stat-item {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     .rd1 { transition-delay: 0.1s; }
@@ -901,24 +902,24 @@
   <!-- STATS -->
   <section id="stats">
     <div class="stats-grid">
-      <div class="stat-item reveal">
-        <span class="stat-number" data-target="10" data-suffix="+">0</span>
+      <div class="stat-item">
+        <span class="stat-number" data-target="10" data-suffix="+">10+</span>
         <span class="stat-label">Years Experience</span>
       </div>
-      <div class="stat-item reveal rd1">
-        <span class="stat-number" data-target="30" data-suffix="%">0</span>
+      <div class="stat-item">
+        <span class="stat-number" data-target="30" data-suffix="%">30%</span>
         <span class="stat-label">Delivery Efficiency Gain</span>
       </div>
-      <div class="stat-item reveal rd2">
-        <span class="stat-number" data-prefix="$" data-target="500" data-suffix="K+">0</span>
+      <div class="stat-item">
+        <span class="stat-number" data-prefix="$" data-target="500" data-suffix="K+">$500K+</span>
         <span class="stat-label">Monthly Conversion Driven</span>
       </div>
-      <div class="stat-item reveal rd3">
-        <span class="stat-number" data-target="400" data-suffix="K">0</span>
+      <div class="stat-item">
+        <span class="stat-number" data-target="400" data-suffix="K">400K</span>
         <span class="stat-label">Daily Active Users</span>
       </div>
-      <div class="stat-item reveal rd4">
-        <span class="stat-number" data-prefix="$" data-target="1" data-suffix="M+">0</span>
+      <div class="stat-item">
+        <span class="stat-number" data-prefix="$" data-target="1" data-suffix="M+">$1M+</span>
         <span class="stat-label">New Business Influenced</span>
       </div>
     </div>
@@ -1368,22 +1369,20 @@
 
     // === COUNTER ANIMATION ===
     function animateCounter(el) {
-      const target = parseFloat(el.dataset.target);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
-      const duration = 1800;
-      const startTime = performance.now();
-
-      function update(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = target < 5 ? (eased * target).toFixed(0) : Math.round(eased * target);
-        el.textContent = prefix + current + suffix;
-        if (progress < 1) requestAnimationFrame(update);
+      var target = parseFloat(el.dataset.target);
+      var prefix = el.dataset.prefix || '';
+      var suffix = el.dataset.suffix || '';
+      var duration = 1800;
+      var start = performance.now();
+      function tick(now) {
+        var p = Math.min((now - start) / duration, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        var v = Math.round(e * target);
+        el.textContent = prefix + v + suffix;
+        if (p < 1) requestAnimationFrame(tick);
         else el.textContent = prefix + target + suffix;
       }
-      requestAnimationFrame(update);
+      requestAnimationFrame(tick);
     }
 
     const statsObserver = new IntersectionObserver((entries) => {
@@ -1398,6 +1397,10 @@
     const statsEl = document.getElementById('stats');
     if (statsEl) statsObserver.observe(statsEl);
 
+    // Always animate counters regardless of scroll or load state
+    setTimeout(() => {
+      document.querySelectorAll('[data-target]').forEach(animateCounter);
+    }, 400);
     // === ACTIVE NAV HIGHLIGHT ===
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     const sectionObserver = new IntersectionObserver((entries) => {
