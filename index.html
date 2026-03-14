@@ -857,7 +857,6 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#ai-builds">AI Builds</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact" class="nav-cta">Hire Me</a></li>
@@ -997,42 +996,6 @@
           <p class="work-card-desc">Led a customer-driven mobile initiative using GM Cloud services to eliminate rental friction — enabling premium members to select, locate, access, and exit without ever waiting in line.</p>
           <span class="work-card-stat">Delivered in Under 12 Months</span>
         </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- AI BUILDS -->
-  <section id="ai-builds" style="background: var(--bg-0);">
-    <div class="section-inner">
-      <p class="section-tag reveal">AI Builds</p>
-      <h2 class="section-title reveal">Built with Claude AI</h2>
-      <p class="reveal rd1" style="color: var(--text-secondary); max-width: 640px; line-height: 1.75; margin-bottom: 3rem; font-size: 1rem;">
-        During my career break I didn't just study AI — I built with it. Using Claude AI and Anthropic's Cowork tool, I've been prototyping and shipping real products. This portfolio site itself was built with Claude. Below is my latest build.
-      </p>
-
-      <div class="work-grid" style="grid-template-columns: repeat(2, 1fr);">
-
-        <a href="https://github.com/dobdobdobdob/softbolt" target="_blank" class="work-card reveal" style="text-decoration: none;">
-          <p class="work-card-tag">Music · Streaming · Creator Economy</p>
-          <h3 class="work-card-title">⚡ Softbolt</h3>
-          <p class="work-card-desc">Artist-owned music streaming — think Substack for musicians. Every artist gets their own branded streaming page, direct fan subscriptions, and full ownership of their audience. Built on the same thesis that drove Humbolt to acquisition, rebuilt with AI-native tools.</p>
-          <span class="work-card-stat">github.com/dobdobdobdob/softbolt →</span>
-        </a>
-
-        <div class="work-card reveal rd1" style="display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <p class="work-card-tag">Portfolio · Design · AI-Generated</p>
-            <h3 class="work-card-title">This Portfolio Site</h3>
-            <p class="work-card-desc">Designed and built entirely using Claude AI — layout, copy, animations, and code. A demonstration that modern PMs don't just spec products, they can ship them. Built in days, not weeks.</p>
-          </div>
-          <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            <span class="skill-tag">Claude AI</span>
-            <span class="skill-tag">Anthropic Cowork</span>
-            <span class="skill-tag">HTML / CSS / JS</span>
-            <span class="skill-tag">GitHub Pages</span>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -1317,7 +1280,7 @@
       <h2 class="section-title reveal">Ready to build<br>something great?</h2>
       <p class="contact-desc reveal">Whether you're hiring a product leader or looking for a fractional PM to drive delivery — I'd love to talk.</p>
       <div class="contact-buttons reveal">
-        <a href="/cdn-cgi/l/email-protection#3e5a5f48575a545f535b4d515c4c575b507e535b105d5153" class="contact-link primary">
+        <a href="mailto:davidjamesobrien@me.com" class="contact-link primary">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           Email Me
         </a>
@@ -1333,7 +1296,7 @@
     <p>© 2026 David O'Brien &nbsp;·&nbsp; Chicago, IL &nbsp;·&nbsp; Product Leader · Builder · Operator</p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // === NAV SCROLL ===
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -1420,3 +1383,12 @@
         photoInitials.style.display = 'none';
         photoHint.style.display = 'none';
         const img = document.createElement('img');
+        img.src = e.target.result;
+        photoCircle.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+
+</body>
+</html>
