@@ -17,18 +17,18 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg-0: #060f1e;
-      --bg-1: #0a1628;
-      --bg-2: #0d1e38;
-      --accent: #4F8EF7;
-      --accent-light: #7AAEF9;
-      --accent-dim: rgba(79, 142, 247, 0.15);
-      --accent-border: rgba(79, 142, 247, 0.25);
-      --text-primary: #F0F4FF;
-      --text-secondary: #8B9CC8;
-      --text-muted: #3D5080;
-      --card-bg: rgba(10, 22, 40, 0.85);
+        :root {
+      --bg-0: #FBFAF7;
+      --bg-1: #F4F0FB;
+      --bg-2: #EBE4F7;
+      --accent: #7C6BD6;
+      --accent-light: #9A8AE4;
+      --accent-dim: rgba(124, 107, 214, 0.12);
+      --accent-border: rgba(124, 107, 214, 0.22);
+      --text-primary: #26242E;
+      --text-secondary: #63606E;
+      --text-muted: #9E9AAC;
+      --card-bg: rgba(255, 255, 255, 0.85);
     }
 
     html { scroll-behavior: smooth; }
@@ -117,15 +117,15 @@
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 80% 70% at 65% 45%, rgba(79, 142, 247, 0.1) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 45% at 15% 85%, rgba(79, 142, 247, 0.06) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 70% at 65% 45%, rgba(124, 107, 214, 0.1) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 15% 85%, rgba(124, 107, 214, 0.06) 0%, transparent 60%);
     }
 
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(79, 142, 247, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79, 142, 247, 0.045) 1px, transparent 1px);
+        linear-gradient(rgba(124, 107, 214, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 107, 214, 0.045) 1px, transparent 1px);
       background-size: 64px 64px;
       mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
     }
@@ -145,8 +145,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(79, 142, 247, 0.1);
-      border: 1px solid rgba(79, 142, 247, 0.3);
+      background: rgba(124, 107, 214, 0.1);
+      border: 1px solid rgba(124, 107, 214, 0.3);
       padding: 0.4rem 1.1rem;
       border-radius: 100px;
       font-size: 0.78rem;
@@ -226,7 +226,7 @@
     .btn-primary:hover {
       background: var(--accent-light);
       transform: translateY(-2px);
-      box-shadow: 0 10px 35px rgba(79, 142, 247, 0.35);
+      box-shadow: 0 10px 35px rgba(124, 107, 214, 0.35);
     }
 
     .btn-secondary {
@@ -236,7 +236,7 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.92rem;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(38,36,46,0.14);
       transition: all 0.2s;
     }
 
@@ -287,7 +287,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 0 80px rgba(79, 142, 247, 0.12), inset 0 0 40px rgba(79, 142, 247, 0.04);
+      box-shadow: 0 0 80px rgba(124, 107, 214, 0.12), inset 0 0 40px rgba(124, 107, 214, 0.04);
     }
 
     .photo-circle img {
@@ -370,7 +370,7 @@
       text-align: center;
       padding: 1.75rem 1rem;
       border-radius: 14px;
-      background: rgba(79, 142, 247, 0.04);
+      background: rgba(124, 107, 214, 0.04);
       border: 1px solid transparent;
       transition: all 0.3s ease;
       cursor: default;
@@ -378,9 +378,9 @@
 
     .stat-item:hover {
       border-color: var(--accent-border);
-      background: rgba(79, 142, 247, 0.09);
+      background: rgba(124, 107, 214, 0.09);
       transform: translateY(-5px);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+      box-shadow: 0 16px 50px rgba(38,36,46,0.10);
     }
 
     .stat-number {
@@ -465,8 +465,8 @@
 
     .pill {
       display: inline-block;
-      background: rgba(79, 142, 247, 0.07);
-      border: 1px solid rgba(79, 142, 247, 0.18);
+      background: rgba(124, 107, 214, 0.07);
+      border: 1px solid rgba(124, 107, 214, 0.18);
       color: var(--text-secondary);
       padding: 0.38rem 0.9rem;
       border-radius: 100px;
@@ -477,7 +477,7 @@
     }
 
     .pill:hover {
-      background: rgba(79, 142, 247, 0.2);
+      background: rgba(124, 107, 214, 0.2);
       color: var(--text-primary);
       border-color: var(--accent);
       transform: scale(1.03);
@@ -495,7 +495,7 @@
 
     .work-card {
       background: var(--card-bg);
-      border: 1px solid rgba(79, 142, 247, 0.1);
+      border: 1px solid rgba(124, 107, 214, 0.1);
       border-radius: 16px;
       padding: 2rem;
       text-decoration: none;
@@ -519,9 +519,9 @@
     }
 
     .work-card:hover {
-      border-color: rgba(79, 142, 247, 0.4);
+      border-color: rgba(124, 107, 214, 0.4);
       transform: translateY(-5px);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+      box-shadow: 0 24px 70px rgba(38,36,46,0.14);
     }
 
     .work-card:hover::after {
@@ -560,8 +560,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(79, 142, 247, 0.1);
-      border: 1px solid rgba(79, 142, 247, 0.2);
+      background: rgba(124, 107, 214, 0.1);
+      border: 1px solid rgba(124, 107, 214, 0.2);
       padding: 0.4rem 0.9rem;
       border-radius: 100px;
       font-size: 0.78rem;
@@ -585,7 +585,7 @@
 
     .exp-card {
       background: var(--card-bg);
-      border: 1px solid rgba(79, 142, 247, 0.1);
+      border: 1px solid rgba(124, 107, 214, 0.1);
       border-radius: 16px;
       padding: 2rem 2.5rem;
       cursor: default;
@@ -606,9 +606,9 @@
     }
 
     .exp-card:hover {
-      border-color: rgba(79, 142, 247, 0.38);
+      border-color: rgba(124, 107, 214, 0.38);
       transform: translateY(-5px);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 24px 70px rgba(38,36,46,0.14);
     }
 
     .exp-card:hover::before { background: var(--accent); }
@@ -692,7 +692,7 @@
 
     .skill-group {
       background: var(--card-bg);
-      border: 1px solid rgba(79, 142, 247, 0.1);
+      border: 1px solid rgba(124, 107, 214, 0.1);
       border-radius: 16px;
       padding: 1.75rem;
       transition: all 0.3s ease;
@@ -701,7 +701,7 @@
     .skill-group:hover {
       border-color: var(--accent-border);
       transform: translateY(-4px);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+      box-shadow: 0 16px 50px rgba(38,36,46,0.12);
     }
 
     .skill-group-title {
@@ -713,7 +713,7 @@
       color: var(--accent);
       margin-bottom: 1rem;
       padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(79, 142, 247, 0.15);
+      border-bottom: 1px solid rgba(124, 107, 214, 0.15);
     }
 
     .skill-tags {
@@ -723,21 +723,21 @@
     }
 
     .skill-tag {
-      background: rgba(255,255,255,0.03);
+      background: rgba(38,36,46,0.035);
       color: var(--text-secondary);
       padding: 0.32rem 0.75rem;
       border-radius: 6px;
       font-size: 0.78rem;
       font-weight: 500;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(38,36,46,0.09);
       transition: all 0.2s;
       cursor: default;
     }
 
     .skill-tag:hover {
-      background: rgba(79, 142, 247, 0.14);
+      background: rgba(124, 107, 214, 0.14);
       color: var(--text-primary);
-      border-color: rgba(79, 142, 247, 0.4);
+      border-color: rgba(124, 107, 214, 0.4);
       transform: scale(1.04);
     }
 
@@ -786,11 +786,11 @@
     .contact-link.primary:hover {
       background: var(--accent-light);
       transform: translateY(-2px);
-      box-shadow: 0 10px 35px rgba(79, 142, 247, 0.35);
+      box-shadow: 0 10px 35px rgba(124, 107, 214, 0.35);
     }
 
     .contact-link.secondary {
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(38,36,46,0.14);
       color: var(--text-primary);
     }
 
@@ -834,6 +834,8 @@
     .rd3 { transition-delay: 0.3s; }
     .rd4 { transition-delay: 0.4s; }
     .rd5 { transition-delay: 0.5s; }
+    .rd6 { transition-delay: 0.6s; }
+    .rd7 { transition-delay: 0.7s; }
 
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 960px) {
@@ -853,6 +855,14 @@
       .skills-grid { grid-template-columns: 1fr; }
       .exp-card { padding: 1.5rem; }
     }
+  
+    /* --- pastel restyle: bolder display type --- */
+    .nav-logo, .hero-name, .hero-title, .section-title, .section-tag,
+    .work-card-title, .skill-group-title, .exp-role, .chat-panel-title,
+    h1, h2, h3 { font-weight: 700 !important; letter-spacing: -0.02em; }
+    .nav-links a { font-weight: 600; }
+    .hero-name { letter-spacing: -0.035em; }
+      .work-card.nolink::after { content: none; }
   </style>
 </head>
 <body>
@@ -976,33 +986,33 @@
 
       <div class="work-grid">
 
-        <a href="case-chefstore.html" class="work-card reveal">
+        <div class="work-card nolink reveal">
           <p class="work-card-tag">Retail · AI · Data</p>
           <h3 class="work-card-title">AI-Powered Store Replenishment at CHEF'STORE</h3>
           <p class="work-card-desc">Led Relex AI integration and consolidated fragmented databases into Snowflake to fully automate store replenishment — driving measurable gains in productivity and conversion.</p>
           <span class="work-card-stat">↑ 20% In-Store Productivity</span>
-        </a>
+        </div>
 
-        <a href="case-sitkagear.html" class="work-card reveal rd1">
+        <div class="work-card nolink reveal rd1">
           <p class="work-card-tag">eCommerce · POS · Transformation</p>
           <h3 class="work-card-title">Full Commerce Transformation for Sitka Gear</h3>
           <p class="work-card-desc">Lifted and shifted Sitka Gear off legacy proprietary systems onto a modern stack — BigCommerce, Teamwork Commerce POS + AI WMS — enabling growth from 1 to 17 stores.</p>
           <span class="work-card-stat">Scaled from 1 - 17 Physical Stores</span>
-        </a>
+        </div>
 
-        <a href="case-humbolt.html" class="work-card reveal rd2">
+        <div class="work-card nolink reveal rd2">
           <p class="work-card-tag">Consumer · Mobile · Growth</p>
           <h3 class="work-card-title">0 to VC Acquisition at Humbolt</h3>
           <p class="work-card-desc">Built a B2C music streaming platform from scratch — iOS, Android, and web — secured multi-region licensing, and scaled to 400K daily active users before a successful VC acquisition.</p>
           <span class="work-card-stat">400K Daily Active Users</span>
-        </a>
+        </div>
 
-        <a href="case-avis.html" class="work-card reveal rd3">
+        <div class="work-card nolink reveal rd3">
           <p class="work-card-tag">Mobility · IoT · Connected Car</p>
           <h3 class="work-card-title">Connected Car Experience at Avis Budget Group</h3>
           <p class="work-card-desc">Led a customer-driven mobile initiative using GM Cloud services to eliminate rental friction — enabling premium members to select, locate, access, and exit without ever waiting in line.</p>
           <span class="work-card-stat">Delivered in Under 12 Months</span>
-        </a>
+        </div>
 
       </div>
     </div>
@@ -1015,31 +1025,56 @@
       <h2 class="section-title reveal">Built practical AI</h2>
       <p class="reveal rd1" style="color: var(--text-secondary); max-width: 640px; line-height: 1.75; margin-bottom: 3rem; font-size: 1rem;">During my career break I didn't just study AI — I built with it. coding and integrating AI, I've been prototyping and shipping real products. This portfolio site itself was built with AI.</p>
       <div class="work-grid">
-        <a href="https://waveform.rocks" target="_blank" class="work-card reveal" style="text-decoration: none;">
-          <p class="work-card-tag">Music · Visualization · Creator Tools</p>
-          <h3 class="work-card-title">🎵 Waveform</h3>
-          <p class="work-card-desc">Upload any track and watch it transform into real-time geometric visuals. Free beta — download your video, no account needed.</p>
-          <span class="work-card-stat">waveform.rocks →</span>
+        <a href="https://monation.org/" target="_blank" class="work-card reveal" style="text-decoration: none;">
+          <p class="work-card-tag">NonProfit · eCommerce · Marketing</p>
+          <h3 class="work-card-title">❤️ mo♥nation</h3>
+          <p class="work-card-desc">mo♥nation (more + donation) is a beautiful donation widget for your website, with one honest flat monthly price. Convert more visitors into donors, and never give up a cut of what they give. Not a percentage. Not a &ldquo;tip.&rdquo; Nothing.</p>
+          <span class="work-card-stat">monation.org &rarr;</span>
         </a>
-        <a href="https://github.com/dobdobdobdob/softbolt" target="_blank" class="work-card reveal rd1" style="text-decoration: none;">
-          <p class="work-card-tag">Music · Streaming · Creator Economy</p>
-          <h3 class="work-card-title">⚡ Softbolt</h3>
-          <p class="work-card-desc">Artist-owned music streaming — think Substack for musicians. Every artist gets their own branded streaming page, direct fan subscriptions, and full ownership of their audience.</p>
-          <span class="work-card-stat">github.com/dobdobdobdob/softbolt →</span>
+
+        <a href="https://superawesomewebsite.com/" target="_blank" class="work-card reveal rd1" style="text-decoration: none;">
+          <p class="work-card-tag">Social Media · Creative</p>
+          <h3 class="work-card-title">✨ SuperAwesome</h3>
+          <p class="work-card-desc">SuperAwesome is a social media for the socially awkward, and its sole purpose is to make social media fun again.</p>
+          <span class="work-card-stat">superawesomewebsite.com &rarr;</span>
         </a>
-        <a href="https://dobdobdobdob.github.io/retail-ai-dashboard" target="_blank" class="work-card reveal rd2" style="text-decoration: none;">
-          <p class="work-card-tag">Retail · AI · Forecasting</p>
-          <h3 class="work-card-title">📊 Retail AI Dashboard</h3>
-          <p class="work-card-desc">AI-powered demand forecasting and inventory management dashboard with live KPIs, restock alerts, and a Claude-powered insights panel — inspired by my Relex Pro work at US Foods.</p>
-          <span class="work-card-stat">dobdobdobdob.github.io/retail-ai-dashboard →</span>
-        </a>
-        <a href="https://ask.menoslabs.com" target="_blank" class="work-card reveal rd3" style="text-decoration: none;">
+
+        <a href="https://ask.menoslabs.com" target="_blank" class="work-card reveal rd2" style="text-decoration: none;">
           <p class="work-card-tag">AI Assistant · SaaS · Personal Brand</p>
           <h3 class="work-card-title">🤖 Ask</h3>
           <p class="work-card-desc">A live AI assistant that answers questions about my experience, skills, and background. Built and deployed via Cloudflare Workers.</p>
           <span class="work-card-stat">ask.menoslabs.com →</span>
         </a>
-        <div class="work-card reveal rd4">
+
+        <a href="https://oncamera.menoslabs.com/" target="_blank" class="work-card reveal rd3" style="text-decoration: none;">
+          <p class="work-card-tag">AI · Video · Coaching</p>
+          <h3 class="work-card-title">🎥 OnCamera</h3>
+          <p class="work-card-desc">OnCamera is a practice studio for video interviews, presentations, and pitches — any moment where how you come across on camera matters. Open it in your browser, hit record, and start talking. While you're rolling, a live coach watches your delivery in real time: when your eyes drift off the lens, when your pace gets rushed, when the lighting drops, when you hold a pause too long.</p>
+          <span class="work-card-stat">oncamera.menoslabs.com &rarr;</span>
+        </a>
+
+        <a href="https://waveform.rocks" target="_blank" class="work-card reveal rd4" style="text-decoration: none;">
+          <p class="work-card-tag">Music · Visualization · Creator Tools</p>
+          <h3 class="work-card-title">🎵 Waveform</h3>
+          <p class="work-card-desc">Upload any track and watch it transform into real-time geometric visuals. Free beta — download your video, no account needed.</p>
+          <span class="work-card-stat">waveform.rocks →</span>
+        </a>
+
+        <a href="https://dobdobdobdob.github.io/retail-ai-dashboard" target="_blank" class="work-card reveal rd5" style="text-decoration: none;">
+          <p class="work-card-tag">Retail · AI · Forecasting</p>
+          <h3 class="work-card-title">📊 Retail AI Dashboard</h3>
+          <p class="work-card-desc">AI-powered demand forecasting and inventory management dashboard with live KPIs, restock alerts, and a Claude-powered insights panel — inspired by my Relex Pro work at US Foods.</p>
+          <span class="work-card-stat">dobdobdobdob.github.io/retail-ai-dashboard →</span>
+        </a>
+
+        <a href="https://github.com/dobdobdobdob/softbolt" target="_blank" class="work-card reveal rd6" style="text-decoration: none;">
+          <p class="work-card-tag">Music · Streaming · Creator Economy</p>
+          <h3 class="work-card-title">⚡ Softbolt <span style="font-size:0.7em; font-weight:600; color:var(--accent); vertical-align:middle;">· Coming soon</span></h3>
+          <p class="work-card-desc">Artist-owned music streaming — think Substack for musicians. Every artist gets their own branded streaming page, direct fan subscriptions, and full ownership of their audience.</p>
+          <span class="work-card-stat">github.com/dobdobdobdob/softbolt →</span>
+        </a>
+
+        <div class="work-card reveal rd7">
           <p class="work-card-tag">Portfolio · Design · AI-Generated</p>
           <h3 class="work-card-title">This Portfolio Site</h3>
           <p class="work-card-desc">Designed and built entirely using copy, animations, and code and AI. A demonstration that modern PMs don't just spec products, they can ship them. Built in days, not weeks.</p>
@@ -1050,22 +1085,6 @@
           </div>
         </div>
 
-        <a href="https://streamspindle.com" target="_blank" class="work-card reveal rd5" style="text-decoration: none;">
-          <p class="work-card-tag">SaaS · Music · CTV · Streaming</p>
-          <h3 class="work-card-title">📺 StreamSpindle</h3>
-          <p class="work-card-desc">Full-stack SaaS platform that gives independent music labels their own branded Roku channel — SVOD, AVOD, royalty reporting, DDEX ERN ingestion, and territory rights management. Built end-to-end with AI: API, dashboard, admin tools, and Roku channel infrastructure.</p>
-          <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            <span class="skill-tag">Cloudflare Workers</span>
-            <span class="skill-tag">D1 · R2</span>
-            <span class="skill-tag">Stripe</span>
-            <span class="skill-tag">Roku</span>
-            <span class="skill-tag">Resend</span>
-            <span class="skill-tag">Twilio</span>
-            <span class="skill-tag">DDEX ERN</span>
-            <span class="skill-tag">TypeScript</span>
-          </div>
-          <span class="work-card-stat" style="margin-top: 1rem;">streamspindle.com →</span>
-        </a>
 
       </div>
     </div>
@@ -1494,10 +1513,10 @@
       font-weight: 600;
       cursor: pointer;
       display: flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 8px 30px rgba(79,142,247,0.35);
+      box-shadow: 0 8px 30px rgba(124,107,214,0.35);
       transition: all 0.2s;
     }
-    #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(79,142,247,0.45); }
+    #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,107,214,0.45); }
     #chat-toggle .dot {
       width: 8px; height: 8px;
       background: #22c55e;
@@ -1513,7 +1532,7 @@
       border: 1px solid var(--accent-border);
       border-radius: 16px;
       display: flex; flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(38,36,46,0.16);
       transform: scale(0.95) translateY(10px);
       opacity: 0;
       pointer-events: none;
@@ -1656,7 +1675,7 @@
       white-space: nowrap;
     }
     .chat-suggestion:hover {
-      background: rgba(79,142,247,0.2);
+      background: rgba(124,107,214,0.2);
       color: var(--text-primary);
     }
 
@@ -1712,7 +1731,7 @@ David's highlights:
 - US Foods: drove $500K+/month online sales, 30% delivery efficiency gain, 20% in-store productivity via AI
 - Humbolt: built music streaming platform, 400K DAU, acquired within 3 years
 - Avis Budget Group: Director of Product, connected car mobile experience
-- AI builds: StreamSpindle (streamspindle.com) — full-stack SaaS + Roku CTV platform for music labels, Waveform (waveform.rocks), Retail AI Dashboard, Ask David chatbot, this portfolio
+- AI builds: mo♥nation (monation.org) — flat-fee donation widget for nonprofits, SuperAwesome (superawesomewebsite.com) — playful social platform, OnCamera (oncamera.menoslabs.com) — AI-coached video/interview practice studio, Waveform (waveform.rocks), Retail AI Dashboard, Ask David chatbot, this portfolio
 - Contact: davidjamesobrien@me.com | linkedin.com/in/davidjamesobrien`;
 
     let chatOpen = false;
